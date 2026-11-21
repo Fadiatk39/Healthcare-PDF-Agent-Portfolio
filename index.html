@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Healthcare PDF Agent | Fadia Hassan</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- PDF.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">✚</span>
+            <span>Health<span class="logo-highlight">AI</span></span>
+        </div>
+
+        <nav>
+            <a href="#home">الرئيسية</a>
+            <a href="#analyzer">تحليل الملفات</a>
+            <a href="#about">عن المشروع</a>
+        </nav>
+
+        <div class="header-label">
+            AI Document Assistant
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- Hero Section -->
+
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <span class="hero-tag">
+                    ✦ SMART HEALTHCARE DOCUMENT ANALYSIS
+                </span>
+
+                <h1>
+                    افهمي مستنداتك الطبية
+                    <span>بطريقة أكثر ذكاءً</span>
+                </h1>
+
+                <p>
+                    أداة تعليمية تساعدك على استخراج النصوص من ملفات PDF
+                    الطبية وتنظيم المعلومات وعرض ملخص واضح وسهل القراءة.
+                </p>
+
+                <a href="#analyzer" class="hero-button">
+                    ابدئي تحليل ملفك
+                    <span>←</span>
+                </a>
+
+            </div>
+
+            <div class="hero-visual">
+                <div class="medical-card">
+                    <div class="medical-icon">✚</div>
+                    <h3>Healthcare AI</h3>
+                    <p>Smart Document Analysis</p>
+                    <div class="visual-line"></div>
+                    <div class="visual-line short"></div>
+                    <div class="visual-line"></div>
+                    <div class="visual-line medium"></div>
+                </div>
+
+                <div class="floating-icon">📄</div>
+                <div class="floating-icon second">🤖</div>
+            </div>
+
+        </section>
+
+
+        <!-- Analyzer Section -->
+
+        <section class="analyzer-section" id="analyzer">
+
+            <div class="section-heading">
+                <span class="section-tag">DOCUMENT ANALYZER</span>
+
+                <h2>حللي ملف PDF الطبي</h2>
+
+                <p>
+                    ارفعي ملفك وابدئي باستخراج المعلومات الموجودة داخله.
+                </p>
+            </div>
+
+
+            <div class="analyzer-card">
+
+                <div class="upload-area" id="uploadArea">
+
+                    <div class="upload-icon">📂</div>
+
+                    <h3>ارفعي ملف PDF هنا</h3>
+
+                    <p>
+                        اختاري ملفًا من جهازك لتحليل محتواه
+                    </p>
+
+                    <label for="pdfInput" class="upload-button">
+                        اختيار ملف PDF
+                    </label>
+
+                    <input
+                        type="file"
+                        id="pdfInput"
+                        accept=".pdf,application/pdf"
+                        hidden
+                    >
+
+                    <p class="file-note">
+                        يدعم ملفات PDF فقط
+                    </p>
+
+                </div>
+
+
+                <div class="file-details" id="fileDetails" hidden>
+
+                    <div class="file-icon">📄</div>
+
+                    <div class="file-info">
+                        <h4 id="fileName">اسم الملف</h4>
+                        <p id="fileSize">حجم الملف</p>
+                    </div>
+
+                    <button id="removeFile" class="remove-button">
+                        إزالة
+                    </button>
+
+                </div>
+
+
+                <div class="analysis-options">
+
+                    <label for="analysisType">
+                        نوع التحليل
+                    </label>
+
+                    <select id="analysisType">
+
+                        <option value="summary">
+                            تلخيص محتوى الملف
+                        </option>
+
+                        <option value="extract">
+                            استخراج النصوص
+                        </option>
+
+                        <option value="keywords">
+                            استخراج الكلمات المهمة
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button id="analyzeButton" class="analyze-button" disabled>
+                    <span>✦</span>
+                    ابدأ التحليل
+                </button>
+
+                <p class="status-message" id="statusMessage">
+                    اختاري ملف PDF للبدء.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Results Section -->
+
+        <section class="results-section" id="resultsSection" hidden>
+
+            <div class="section-heading">
+                <span class="section-tag">ANALYSIS RESULTS</span>
+                <h2>نتائج تحليل المستند</h2>
+                <p>المعلومات المستخرجة من ملفك.</p>
+            </div>
+
+            <div class="results-card">
+
+                <div class="result-header">
+                    <h3>📋 محتوى التحليل</h3>
+
+                    <button id="copyResults" class="copy-button">
+                        نسخ النتائج
+                    </button>
+                </div>
+
+                <div id="resultsContent" class="results-content">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Features -->
+
+        <section class="features-section">
+
+            <div class="section-heading">
+                <span class="section-tag">PROJECT FEATURES</span>
+                <h2>ماذا يقدم المشروع؟</h2>
+                <p>مجموعة من الوظائف لمعالجة المستندات الطبية.</p>
+            </div>
+
+            <div class="features-grid">
+
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>PDF Processing</h3>
+                    <p>
+                        قراءة المستندات واستخراج النصوص من ملفات PDF.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Smart Summary</h3>
+                    <p>
+                        تنظيم النص المستخرج وعرض ملخص مبسط للمحتوى.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Keyword Extraction</h3>
+                    <p>
+                        تحديد الكلمات والمصطلحات المهمة داخل المستند.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- About -->
+
+        <section class="about-section" id="about">
+
+            <div class="section-heading">
+                <span class="section-tag">ABOUT THE PROJECT</span>
+                <h2>عن Healthcare PDF Agent</h2>
+            </div>
+
+            <p>
+                مشروع تعليمي ضمن مجال الذكاء الاصطناعي وعلوم البيانات،
+                يهدف إلى توظيف تقنيات معالجة المستندات واستخراج النصوص
+                لتسهيل قراءة المعلومات الطبية وتنظيمها.
+            </p>
+
+            <p class="disclaimer">
+                تنبيه: هذا المشروع لأغراض تعليمية فقط، ولا يقدم تشخيصًا
+                طبيًا أو توصيات علاجية، ولا يغني عن استشارة الطبيب.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>
+            © 2026 Healthcare PDF Agent
+        </p>
+
+        <p>
+            Designed & Developed by Fadia Hassan Mohammed
+        </p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
